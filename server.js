@@ -1,15 +1,20 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const Employeerouter = require('./routers/employeerouter');
 
 const app = express();
 
 app.use(express.json());
 
+
 connectDB();
+
+app.use('/api', Employeerouter);
 
 app.get('/', (req, res) => {
     res.send('Welcome to the EMS server!');
 })
+
 
 
 app.listen(3000, () => {
