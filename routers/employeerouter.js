@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const employeeController = require('../controllers/employeeController');
 const GetAllEmployees = require('../controllers/employeeController');
-const updatedEmployee = require('../controllers/employeeController')
-const GetById = require('../controllers/employeeController')
-const deleteEmplyee = require('../controllers/employeeController')
+const updatedEmployee = require('../controllers/employeeController');
+const GetById = require('../controllers/employeeController');
+const deleteEmplyee = require('../controllers/employeeController');
+const searchEmployees = require('../controllers/employeeController');
 
 
 router.post('/create', employeeController.createEmployee);
@@ -15,5 +16,7 @@ router.get('/GetEmployeeById/:id', GetById.GetemployeeById);
 router.put('/updated/:id', updatedEmployee.UpdateEmployee);
 
 router.delete('/delete/:id', deleteEmplyee.DeleteEmployee);
+
+router.get('/search', searchEmployees.SearchEmployees)
 
 module.exports = router;

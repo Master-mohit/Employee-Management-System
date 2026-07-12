@@ -85,11 +85,35 @@ const DeleteEmployee = async(req, res) => {
      }
 }
 
+const SearchEmployees = async(req, res) => {
+     try{
+         const searchEmpl = await employee.find({
+            name: {
+                $regex: req.query.name,
+                $options: 'i'
+            }
+         })
+         res.status(200).json({
+              message: "Employees searched successfully",
+              data: searchEmpl
+         })
+     }
+     catch(error){
+          res.status(500).json({
+               message: "Error searching employees",
+               data : error.message
+          })
+     }
+}
+
+
 module.exports = {
     createEmployee,
     getAllEmployees,
     GetemployeeById ,
      UpdateEmployee,
-     DeleteEmployee
+     DeleteEmployee,
+     SearchEmployees
+
 }
 
