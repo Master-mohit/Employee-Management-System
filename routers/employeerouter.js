@@ -5,7 +5,8 @@ const updatedEmployee = require('../controllers/employeeController');
 const GetById = require('../controllers/employeeController');
 const deleteEmplyee = require('../controllers/employeeController');
 const searchEmployees = require('../controllers/employeeController');
-
+const SorEmp = require('../controllers/employeeController');
+const Pagination = require('../controllers/employeeController');
 
 router.post('/create', employeeController.createEmployee);
 
@@ -17,6 +18,10 @@ router.put('/updated/:id', updatedEmployee.UpdateEmployee);
 
 router.delete('/delete/:id', deleteEmplyee.DeleteEmployee);
 
-router.get('/search', searchEmployees.SearchEmployees)
+router.get('/search', searchEmployees.SearchEmployees);
+
+router.get('/sort', SorEmp.SortingEmployee);
+
+router.get('/pagiEmpl', Pagination.Pagination);
 
 module.exports = router;
