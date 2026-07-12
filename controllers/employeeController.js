@@ -20,11 +20,6 @@ const createEmployee = async(req, res) => {
 
 const getAllEmployees = async(req, res) => {
 
-     const page = Number(req.query.page)|| 1;
-     const limit = Number(req.query.limit)||1;
-
-       const skip = (page - 1) * limit;
-
         const employees = await employee.find({
 
           salary: {
@@ -36,7 +31,7 @@ const getAllEmployees = async(req, res) => {
           age :{
                $gte: 23
           }
-        }, "name email").skip(skip).limit(limit);
+        }, "name email")
             res.status(200).json({
                message: "Employees retrieved successfully",
                data: employees
@@ -140,7 +135,9 @@ const Pagination = async(req, res) => {
       const skip = (page - 1) * limit;
 
      try{
-           const pageEmp = await employee.find().skip(skip).limit(limit);
+           const pageEmp = await employee.find().sort({
+               salary : 1
+           }).skip(skip).limit(limit);
             res.status(200).json({
                message: "Employees paginated successfully",
                data: pageEmp  
@@ -155,6 +152,32 @@ const Pagination = async(req, res) => {
      }
 }
 
+const Aggregation = async(req, res) => {
+     try{
+         const aggemp = await employee.aggregate([
+          {
+               $group: {
+                    _id: "$department",
+                    totalemployees: {$sum : 1},
+                    totalsalary: {$sum: "$salary"},
+                    averagesalary: {$avg: "$salary"}
+               }
+          }
+         ])
+         res.status(200).json({
+          message : "Employees aggregated successfully",
+          data : aggemp
+         })
+
+     }
+     catch(error){
+          res.status(500).json({
+               message: "Error in Aggregation",
+               data : error.message
+          })
+     }
+}
+
 module.exports = {
     createEmployee,
     getAllEmployees,
@@ -163,7 +186,8 @@ module.exports = {
      DeleteEmployee,
      SearchEmployees,
      SortingEmployee,
-     Pagination
+     Pagination,
+     Aggregation
       
 }
 

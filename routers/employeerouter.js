@@ -7,6 +7,7 @@ const deleteEmplyee = require('../controllers/employeeController');
 const searchEmployees = require('../controllers/employeeController');
 const SorEmp = require('../controllers/employeeController');
 const Pagination = require('../controllers/employeeController');
+const Aggregation = require('../controllers/employeeController')
 
 router.post('/create', employeeController.createEmployee);
 
@@ -23,5 +24,7 @@ router.get('/search', searchEmployees.SearchEmployees);
 router.get('/sort', SorEmp.SortingEmployee);
 
 router.get('/pagiEmpl', Pagination.Pagination);
+
+router.get('/aggemp', Aggregation.Aggregation);
 
 module.exports = router;
