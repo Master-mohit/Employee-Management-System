@@ -32,6 +32,7 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: true,
        enum: ['HR', 'IT', 'Finance', 'Marketing', 'Sales'],
+      
         
 
      },
