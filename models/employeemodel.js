@@ -3,24 +3,34 @@ const mongoose = require('mongoose');
 const employeeSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minlength: [3, 'Name must be at least 3 characters Long'],
+        maxlength: [50, 'Name cant be exceed 50 characters Long'],
+        trim: true,
+        lowercase: true,
     },
      email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        trim: true,
      },
      age : {
         type: Number,
-        required: true
+        required: true,
+        min: [18, 'age must be at least 18'],
+        max: [65, 'age cant be exceed 65'],
      },
      salary: {
         type: Number,
-        required: true
+        required: true,
+         min : [8000, 'Salary must be at least 8000'],
+        max: [100000, 'Salary cant be exceed 100000'],
      },
      department: {
         type: String,
         required: true,
+       enum: ['HR', 'IT', 'Finance', 'Marketing', 'Sales'],
         
 
      },
