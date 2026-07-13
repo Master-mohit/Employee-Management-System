@@ -161,7 +161,7 @@ const Aggregation = async(req, res) => {
                     totalemployees: {$sum : 1},
                     totalsalary: {$sum: "$salary"},
                     averagesalary: {$avg: "$salary"}
-               }
+               },
           }
          ])
          res.status(200).json({
@@ -178,6 +178,22 @@ const Aggregation = async(req, res) => {
      }
 }
 
+const GetALLEMPLOYEEE = async(req, res) => {
+      try{
+          const GETEMPLOYEEE = await employee.find().populate('department');
+          res.status(200).json({
+            message: "All employees retrieved successfully",
+            data: GETEMPLOYEEE
+          })
+      }
+      catch(error){
+        res.status(500).json({
+          message: "Error in getting all employees",
+          data : error.message
+        })     
+      }
+}
+
 module.exports = {
     createEmployee,
     getAllEmployees,
@@ -187,7 +203,8 @@ module.exports = {
      SearchEmployees,
      SortingEmployee,
      Pagination,
-     Aggregation
+     Aggregation,
+     GetALLEMPLOYEEE
       
 }
 

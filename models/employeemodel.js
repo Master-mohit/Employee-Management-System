@@ -29,12 +29,9 @@ const employeeSchema = new mongoose.Schema({
         max: [100000, 'Salary cant be exceed 100000'],
      },
      department: {
-        type: String,
-        required: true,
-       enum: ['HR', 'IT', 'Finance', 'Marketing', 'Sales'],
-      
-        
-
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Department',
+        required: true
      },
      joiningDate: {
         type: Date,
