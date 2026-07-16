@@ -18,8 +18,59 @@ const createDepartment = async(req, res) => {
 }
 
 
+const GetAllDept = async(req, res) => {
+    try{
+     const Getalldepartments =  await departmentModel.find();
+        res.status(201).json({
+            message: "Get All Departments Successfully",
+            data: Getalldepartments
+        })
+    }
+    catch(error){
+            res.status(500).json({
+            message: "Error to Getting Departments",
+            data: error.message
+        })
+    }
+}
+
+const GetById = async(req, res) => {
+    try{
+    const getbyid = await departmentModel.findById(req.params.id);
+        res.status(201).json({
+            message: "Get Departments By Id Successfully",
+            data: getbyid
+        })
+    }
+    catch(error){
+           res.status(500).json({
+            message: "Error to Getting Departments by ID",
+            data: error.message
+        })
+    }
+}
+
+const UpdateDept = async(req, res) => {
+    try{
+     const updateDept = await departmentModel.findByIdAndUpdate(req.params.id, req.body, {new : true})
+       res.status(201).json({
+            message: "Updated Successfully",
+            data: updateDept
+        })
+    }
+    catch(error){
+             res.status(500).json({
+            message: "Error to Updated Departments by ID",
+            data: error.message
+        })
+    }
+}
+
 
 
 module.exports = {
-    createDepartment
+    createDepartment,
+    GetAllDept,
+    GetById,
+    UpdateDept
 }

@@ -17,6 +17,10 @@ const departmentSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: [1, 'Floor must be at least 1']
+    },
+    location:{
+        type: String,
+        require: true,
     }
 })
 
