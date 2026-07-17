@@ -1,4 +1,5 @@
 const departmentModel = require('../models/departmentmodel');
+const employeeModel = require('../models/employeemodel');
 
 const createDepartment = async(req, res) => {
     try{
@@ -66,11 +67,28 @@ const UpdateDept = async(req, res) => {
     }
 }
 
+const DeptWiseEmp = async(req, res) => {
+    try{
+        const deptWiseEm = await employeeModel.find({department: req.params.id})
+         res.status(201).json({
+            message: "Succesfully Fetch EmployeeDepartment wise",
+            data: deptWiseEm
+        })
+    }
+    catch(error){
+          res.status(500).json({
+            message: "Error to Get Departments wise Employees",
+            data: error.message
+        })
+    }
+}
+
 
 
 module.exports = {
     createDepartment,
     GetAllDept,
     GetById,
-    UpdateDept
+    UpdateDept,
+    DeptWiseEmp
 }
