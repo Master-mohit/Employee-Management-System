@@ -2,10 +2,13 @@ const express = require('express');
 const connectDB = require('./config/db');
 const Employeerouter = require('./routers/employeerouter');
 const Departmentrouter = require('./routers/departmentrouter');
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 
 connectDB();

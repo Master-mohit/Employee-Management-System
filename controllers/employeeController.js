@@ -20,18 +20,17 @@ const createEmployee = async(req, res) => {
 
 const getAllEmployees = async(req, res) => {
 
-        const employees = await employee.find({
+        const employees = await employee.find(
+     //      {
 
-          salary: {
-               $gte: 8000
-          },
-          department: {
-               $in: ['IT', 'HR']
-          },
-          age :{
-               $gte: 23
-          }
-        }, "name email")
+     //      salary: {
+     //           $gte: 8000
+     //      },
+     //      age :{
+     //           $gte: 21
+     //      }
+     //    }, "name email"
+     )
             res.status(200).json({
                message: "Employees retrieved successfully",
                data: employees
