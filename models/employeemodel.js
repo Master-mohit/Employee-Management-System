@@ -20,12 +20,12 @@ const employeeSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: [18, 'age must be at least 18'],
-        max: [65, 'age cant be exceed 65'],
+        max: [70, 'age cant be exceed 65'],
      },
      salary: {
         type: Number,
         required: true,
-         min : [8000, 'Salary must be at least 8000'],
+         min : [6000, 'Salary must be at least 8000'],
         max: [1000000, 'Salary cant be exceed 100000'],
      },
      department: {
